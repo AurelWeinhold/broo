@@ -282,27 +282,12 @@ set_up_mumble() {
     echo "Done setting up Mumble!"
 }  # End of set_up_mumble()
 
-
-copy_broo() {
-    echo "Setting up the 'broo' command..."
-
-    mkdir -p $HOME/.local/bin
-    cp broo $HOME/.local/bin
-    chmod a+x $HOME/.local/bin/broo
-
-    if [[ ! ":$PATH:" == *"$HOME/.local/bin:"* ]]; then
-        echo "Please add ~/.local/bin to your path before running Broo!"
-    fi
-}
-
-
 # Script will start executing from here when run from terminal.
 
 echo -e "Setting up Broo...\n"
 
 install_dependencies
 set_up_mumble
-copy_broo
 
 echo -e "
     Now set up the mobile app.
