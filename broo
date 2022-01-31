@@ -166,7 +166,7 @@ check_if_started() {
 
     if [ -d $VAR_RUN ]; then
         echo "Broo was already started earlier."
-        echo "To force start, use 'f' on the starting prompt."
+        echo "To restart run 'broo -r'."
         return 1
     fi
 }  # End of check_if_started()
@@ -220,7 +220,7 @@ fix_certificate_problem() {
 
     rmdir $VAR_RUN
 
-    echo -e "\rDone! Broo will hopefully work without hiccups now!"
+    echo -e "\rDone! Broo will hopefully work now!"
 }  # End of fix_certificate_problem()
 
 
@@ -245,7 +245,7 @@ stop_broo() {
 
     if [ ! -d $VAR_RUN ]; then
         echo "Broo has already stopped."
-        echo "To force stop, use 'q' on the starting prompt."
+        echo "To force stop run 'broo -f'."
         return 1
     fi
 
@@ -265,20 +265,41 @@ stop_broo() {
     echo -e "\nTerminated."
 }  # End of stop_broo()
 
+print_help() {
+    printf "This is broo. A commandline tool to connect a virtual microphone\n"
+    printf "using mumble as a server. Working on both Pulseaudio and PipeWire.\n"
+
+    printf "Usage:\n\n"
+    printf "\tbroo [options]\n"
+
+    printf "\nOptions:\n\n"
+    printf "  -s, --start\t\tStart the server and virtual microphone.\n"
+    printf "  -q, --quit\t\tKill the server and virtual microphone.\n"
+    printf "  -f, --force\t\tForce kill the server and all related processes.\n"
+    printf "  -r, --restart\t\tKill and restart the server and virtual microphone.\n"
+    printf "  --fix-cert\t\tFix a problem with the mumble-server certificate.\n"
+    printf "  -h, --help\t\tPrint this message and exit.\n"
+
+    printf "\nIf no options are given, the server and microphone will be set up.\n"
+
+    exit 0
+}
 
 # Script will start executing from here when run from terminal.
 
-read -n1 -p "Do you want to start Broo, or close it? (s/c): " todo
-echo -e "\n"
+if [[ $# -gt 0 ]]; then
+    case $1 in
+        -r|--restart) force_kill_broo ;&  # Fallthrough to the next case.
+        -s|--start) start_broo ;;
+        -q|--quit) stop_broo ;;
+        -f|--force) force_kill_broo; echo "Force killed the requisite processes." ;;
+        --fix-cert) fix_certificate_problem ;;
+        -h|--help) print_help ;;
+        *) printf "Unknown option %s" $1; print_help ;;
+    esac
+else
+    start_broo
+fi
 
-case $todo in
-    f|F) force_kill_broo ;&  # Fallthrough to the next case.
-    s|S) start_broo ;;
-    c|C) stop_broo ;;
-    q|Q) force_kill_broo; echo "Force killed the requisite processes." ;;
-    p|P) fix_certificate_problem ;;
-    *) echo "Shoo away your cat from the keyboard man!" ;;
-esac
-
-
+exit 0
 # End of file.
