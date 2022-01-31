@@ -187,18 +187,23 @@ install_dependencies() {
 
 
 set_up_mumble() {
+
+    # Create the data directory for the database.
+    if [[ ! -e $XDG_DATA_HOME/broo ]]; then
+        mkdir -p $XDG_DATA_HOME/broo
+    fi
     # Sets up Mumble for quick use later.
 
     # Purge any existing cache.
-    if [[ -e ~/.cache/broo ]]; then
-        rm -rf ~/.cache/broo
+    if [[ -e $XDG_CACHE_HOME/broo ]]; then
+        rm -rf $XDG_CACHE_HOME/broo
     fi
 
     # Create config folder or purge any existing one.
-    if [[ -e ~/.config/broo ]]; then
-        rm -rf ~/.config/broo/*
+    if [[ -e $XDG_CONFIG_HOME/broo ]]; then
+        rm -rf $XDG_CONFIG_HOME/broo/*
     else
-        mkdir ~/.config/broo
+        mkdir -p $XDG_CONFIG_HOME/broo
     fi
 
     # Set password for new / unregistered connections.
@@ -217,9 +222,9 @@ set_up_mumble() {
     read -n1 -p "Do you want to enable Mumble server logging? (y/n): " yn
     echo
     case $yn in
-        y|Y) echo "Log will be stored in ~/.cache/broo/murmur.log"
-             mkdir ~/.cache/broo
-             logfile=~/.cache/broo/murmur.log
+        y|Y) echo "Log will be stored in $XDG_CACHE_HOME/broo/murmur.log"
+             mkdir $XDG_CACHE_HOME/broo
+             logfile=$XDG_CACHE_HOME/broo/murmur.log
              ;;
         n|N) ;;
         *) echo "Huh?? Defaulting to no logging." ;;
@@ -232,12 +237,12 @@ set_up_mumble() {
         bonjour=true
         bandwidth=558000 ; Max possible BW, see Mumble source on GitHub.
         registerName=Broo
-        database=$HOME/.config/broo/murmur.sqlite
+        database=$XDG_DATA_HOME/broo/murmur.sqlite
         logfile=$logfile
         logdays=-1  ; Don't store logs in the database.
         password=$pass
         welcometext=  ; Why even welcome ourselves? :-P
-    " | awk '{$1=$1};1' > ~/.config/broo/murmur.ini
+    " | awk '{$1=$1};1' > $XDG_CONFIG_HOME/broo/murmur.ini
 
     # Tell user to use the Mumble GUI for configuring it once.
     echo -e "

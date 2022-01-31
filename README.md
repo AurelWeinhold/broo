@@ -6,7 +6,8 @@
 - Get clear voice and low latency with minimal CPU overhead.
 - Just run one command (`$ broo`) to quickly set-up the mic and start talking with peers.
 - Supports both modern PipeWire and legacy PulseAudio.
-- For PulseAudio use case, restores backed-up ALSA settings stored in `~/.config/asound.state`, if it exists.
+- For PulseAudio use case, restores backed-up ALSA settings stored in
+  `$XDG_CONFIG_HOME/asound.state`, if it exists.
 
 
 ## Reason for such a name
@@ -16,6 +17,7 @@
 
 ## Requirements
 
+- `$XDG_{CONFIG,DATA,CACHE}_HOME` to be set.
 - A GNU/Linux distro with either PipeWire or PulseAudio.
 - A smartphone (or anything with a mic which can connect to a local Mumble server).
     - For Android → Mumla app ([F-Droid](https://f-droid.org/packages/se.lublin.mumla/)) [[Source](https://gitlab.com/quite/mumla)]

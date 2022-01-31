@@ -146,8 +146,8 @@ add_mic_pulseaudio() {
     sleep 3  # Give time for it to set up.
 
     # Restore ALSA settings if the backup file exists.
-    if [ -f ~/.config/asound.state ]; then
-        alsactl --file ~/.config/asound.state restore
+    if [ -f $XDG_CONFIG_HOME/asound.state ]; then
+        alsactl --file $XDG_CONFIG_HOME/asound.state restore
     fi
 }  # End of add_mic_pulseaudio()
 
