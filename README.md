@@ -105,9 +105,14 @@ If the problem still persists, it would be nice to go through the setup again.
 
 ## Credits
 
-Inspired by the implementation of https://github.com/pzmarzly/mic_over_mumble/.
+Inspired by the implementation of [mic_over_mumble](https://github.com/pzmarzly/mic_over_mumble/).
+This is a fork of [siddhpant/broo](https://github.com/siddhpant/broo).
 
-I have tried to hopefully iron out some problems with the original
-implementation by making the script from scratch to streamline the code, and
-added absolutely necessary features such as supporting PipeWire, adding prompt
-and ability to close the terminal, ALSA setting restore, etc.
+> I have tried to hopefully iron out some problems with the original
+> implementation by making the script from scratch to streamline the code, and
+> added absolutely necessary features such as supporting PipeWire, adding prompt
+> and ability to close the terminal, ALSA setting restore, etc.
+- siddhpant
+
+I have fixed some small problems and rephrased some of the comments and
+print-outs. Also I have replaced the prompt with an argument system.
