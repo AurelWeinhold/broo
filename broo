@@ -62,7 +62,7 @@ start_mumble_client () {
     nohup mumble "mumble://127.0.0.1" &>"$VAR_RUN/nohup.out" &
     echo $! > "$VAR_RUN/mumble_client.pid"
 
-    # Wait till the user connects (presses OK).
+    # Wait until the user connects (presses OK).
     # Thanks to 00prometheus on <https://superuser.com/a/900134>.
     (tail -f "$VAR_RUN/nohup.out" &) | grep --line-buffered -q "ServerHandler:"
 }  # End of start_mumble_client ()
