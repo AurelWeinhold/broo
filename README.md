@@ -59,19 +59,19 @@ Then follow the on-screen instructions.
 ## Run
 
 ```
-$ broo
+$ broo [options]
 ```
 
 Now use the mic by choosing `Monitor of Broo` as your input source / microphone
 in applications.
 
 ### Options
-- `-s, --start` to start the server and virtual microphone.
-- `-q, --quit` to kill the server and virtual microphone.
-- `-f, --force` to force kill the server and all related processes.
-- `-r, --restart` to kill and restart the server and virtual microphone.
+- `-s`, `--start` to start the server and virtual microphone.
+- `-q`, `--quit` to kill the server and virtual microphone.
+- `-f`, `--force` to force kill the server and all related processes.
+- `-r`, `--restart` to kill and restart the server and virtual microphone.
 - `--fix-cert` to fix a problem with the mumble-server certificate.
-- `-h, --help` to print the help message and exit.
+- `-h`, `--help` to print the help message and exit.
 
 
 ## Audiophile?
