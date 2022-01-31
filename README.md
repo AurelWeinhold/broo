@@ -98,8 +98,8 @@ does not work.
 ## Miscellaneous
 
 If you see that your PC's user isn't in the channel when you join from your
-mobile, then restart Broo and press `p` on the starting prompt of Broo. After
-following the on-screen steps, run Broo normally.
+mobile, then restart Broo by using `broo --fix-cert` on the starting prompt of
+Broo. After following the on-screen steps, run Broo normally.
 
 If the problem still persists, it would be nice to go through the setup again.
 
