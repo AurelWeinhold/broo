@@ -54,7 +54,7 @@ set_up_mumble() {
     case $yn in
         y|Y) read -p "Enter password (NB: saved unencrypted): " pass; echo ;;
         n|N) ;;
-        *) echo "Huh?? Defaulting to no password." ;;
+        *) echo "Defaulting to no password." ;;
     esac
 
     # Ask if logging is needed.
@@ -67,7 +67,7 @@ set_up_mumble() {
              logfile=$XDG_CACHE_HOME/broo/murmur.log
              ;;
         n|N) ;;
-        *) echo "Huh?? Defaulting to no logging." ;;
+        *) echo "Defaulting to no logging." ;;
     esac
 
     # Create the murmur.ini file.
