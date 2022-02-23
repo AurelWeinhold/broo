@@ -109,7 +109,7 @@ configure_sink() {
     # Move Mumble to Broo sink. For that, we need Mumble sink-input index.
     pactl move-sink-input $(get_mumble_sink_input_index) Broo
 
-    echo -e "Done! Use \"Monitor of Broo\" as your input mic, and enjoy!\n"
+    echo -e "Done! Use \"Monitor of Broo\" as your input mic.\n"
 }  # End of configure_sink()
 
 
@@ -195,7 +195,7 @@ start_broo() {
     server_ip=$(ip -4 a | grep "state UP" -A1 |
                 awk 'NR!=1 {print $2}' | cut -d '/' -f1)
 
-    echo "Connect to Broo's server on $server_ip :)"
+    echo "Connect to Broo's server on $server_ip"
 }  # End of start_broo()
 
 
